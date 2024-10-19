@@ -1,144 +1,135 @@
-# BackendInternTask_Convin
-Expense Management System
-Overview
-The Expense Management System is a backend application designed to facilitate efficient expense tracking and management among users. It allows users to add expenses, split costs among participants using various methods, and generate balance sheets. This project aims to simplify the process of managing shared expenses in social or group settings.
+Here's a more detailed README file formatted for GitHub, complete with sections for installation, usage, and example requests. 
 
-Features
-User Management
-Create User: Users can register with their email, name, and mobile number.
-Retrieve User Details: Users can fetch their details based on their unique user ID.
-Expense Management
-Add Expense: Users can create a new expense, specifying its description, total amount, split method, and participants.
-Retrieve Individual User Expenses: Users can view all expenses they are associated with.
-Retrieve Overall Expenses: A comprehensive view of all expenses in the system is available.
-Download Balance Sheet: Users can download a balance sheet in JSON format, summarizing their expenses.
-Expense Splitting Methods
-Equal Split: The total expense is divided equally among all participants.
-Exact Split: Each participant can specify the exact amount they owe.
-Percentage Split: Participants can specify the percentage of the total expense they are responsible for (the total percentages must sum to 100%).
-Tech Stack
-Node.js: JavaScript runtime for building the backend service.
-Express.js: Web framework for building APIs.
-MongoDB: NoSQL database for storing user and expense data.
-Mongoose: ODM (Object Data Modeling) library for MongoDB and Node.js.
-Postman: API client for testing and documenting the API.
-Setup Instructions
-Clone the Repository:
+```markdown
+# Expense Management System
 
-bash
-Copy code
-git clone [repository-url]
-cd [repository-folder]
-Install Dependencies: Ensure you have Node.js and npm installed. Run the following command to install all required packages:
+## Overview
 
-bash
-Copy code
-npm install
-Set Up Environment Variables: Create a .env file in the root directory of the project. Add the following environment variables:
+The **Expense Management System** is a web application designed to help users efficiently manage their expenses. This application allows users to create profiles, add expenses, split costs among multiple participants, and download a balance sheet summarizing individual and overall expenses. The system supports three methods of splitting expenses: **Equal**, **Exact**, and **Percentage**.
 
-makefile
-Copy code
-MONGODB_URI=[Your MongoDB connection string]
-PORT=5000
-Start the Server: Run the following command to start the server:
+## Features
 
-bash
-Copy code
-npm start
-The server will run on http://localhost:5000.
+### User Management
+- **Create User**: Add new users with email, name, and mobile number.
+- **Retrieve User Details**: Fetch details of a specific user by their unique ID.
 
-Testing the API: You can test the API using Postman. Import the provided Postman collection for a convenient way to test all endpoints.
+### Expense Management
+- **Add Expense**: Users can record an expense, specifying how to split it among participants.
+- **Retrieve Individual User Expenses**: Users can view all expenses they are involved in.
+- **Retrieve Overall Expenses**: Fetch a list of all expenses recorded in the system.
+- **Download Balance Sheet**: Download a summary of expenses in JSON format for further analysis.
 
-API Documentation
-User Endpoints
-Create User
+## Tech Stack
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB, Mongoose
+- **API Testing**: Postman
 
-Endpoint: /api/users
-Method: POST
-Request Body:
-json
-Copy code
-{
-  "email": "user@example.com",
-  "name": "User Name",
-  "mobileNumber": "1234567890"
-}
-Response: Returns the created user details along with a unique user ID.
-Retrieve User Details
+## Installation
 
-Endpoint: /api/users/:userId
-Method: GET
-Path Parameter:
-userId: Unique identifier for the user.
-Response: Returns the user's details.
-Expense Endpoints
-Add Expense
+To set up the project locally, follow these steps:
 
-Endpoint: /api/expenses
-Method: POST
-Request Body:
-json
-Copy code
-{
-  "description": "Expense description",
-  "totalAmount": 3000,
-  "splitMethod": "equal", // Can be "equal", "exact", or "percentage"
-  "participants": [
-    {
-      "mobileNumber": "1234567890"
-    },
-    {
-      "mobileNumber": "0987654321"
-    }
-  ]
-}
-Response: Returns the created expense details, including split amounts.
-Retrieve Individual User Expenses
+1. **Clone the Repository:**
+   ```bash
+   git clone [repository-url]
+   cd [repository-folder]
+   ```
 
-Endpoint: /api/expenses/user/:userId
-Method: GET
-Path Parameter:
-userId: Unique identifier for the user.
-Response: Returns all expenses associated with the specified user.
-Retrieve Overall Expenses
+2. **Install Dependencies:**
+   Make sure you have Node.js and npm installed. Then run:
+   ```bash
+   npm install
+   ```
 
-Endpoint: /api/expenses
-Method: GET
-Response: Returns a list of all expenses in the system, including participant details.
-Download Balance Sheet
+3. **Set Up Environment Variables:**
+   Create a `.env` file in the root directory and add your MongoDB connection string and server port:
+   ```
+   MONGODB_URI=[Your MongoDB connection string]
+   PORT=5000
+   ```
 
-Endpoint: /api/expenses/download
-Method: GET
-Response: Returns a JSON file containing a balance sheet summarizing all expenses.
-Expense Splitting Method Details
-Equal Split: Each participant pays the same amount, calculated as:
+4. **Start the Server:**
+   ```bash
+   npm start
+   ```
+   The server will run on `http://localhost:5000`.
 
-Amount Owed
-=
-Total Amount
-Number of Participants
-Amount Owed= 
-Number of Participants
-Total Amount
-​
- 
-Exact Split: Each participant specifies the amount they owe directly. Ensure that the total amount specified matches the total amount of the expense.
+## API Documentation
 
-Percentage Split: Each participant specifies the percentage they owe. The percentages must sum to 100%. The calculation is done as follows:
+### User Endpoints
 
-Amount Owed
-=
-Total Amount
-×
-Percentage
-100
-Amount Owed= 
-100
-Total Amount×Percentage
-​
- 
-Postman Collection
-You can find the Postman collection for this project here. Import the collection into Postman to test the API endpoints easily.
+#### Create User
+- **POST** `/api/users`
+- **Request Body:**
+  ```json
+  {
+    "email": "user@example.com",
+    "name": "User Name",
+    "mobileNumber": "1234567890"
+  }
+  ```
 
-License
+- **Response:**
+  - `201 Created`: Returns the created user object.
+  - `400 Bad Request`: If validation fails (e.g., missing fields).
+
+#### Retrieve User Details
+- **GET** `/api/users/:userId`
+- **Response:**
+  - `200 OK`: Returns the user object.
+  - `404 Not Found`: If the user does not exist.
+
+### Expense Endpoints
+
+#### Add Expense
+- **POST** `/api/expenses`
+- **Request Body:**
+  ```json
+  {
+    "description": "Expense description",
+    "totalAmount": 3000,
+    "splitMethod": "equal",
+    "participants": [
+      {
+        "mobileNumber": "1234567890"
+      },
+      {
+        "mobileNumber": "0987654321"
+      }
+    ]
+  }
+  ```
+
+- **Response:**
+  - `201 Created`: Returns the created expense object.
+  - `400 Bad Request`: If validation fails (e.g., invalid participants or percentages).
+
+#### Retrieve Individual User Expenses
+- **GET** `/api/expenses/user/:userId`
+- **Response:**
+  - `200 OK`: Returns an array of expenses for the specified user.
+
+#### Retrieve Overall Expenses
+- **GET** `/api/expenses`
+- **Response:**
+  - `200 OK`: Returns an array of all expenses.
+
+#### Download Balance Sheet
+- **GET** `/api/expenses/download`
+- **Response:**
+  - `200 OK`: Returns a JSON file of the balance sheet for download.
+
+## Postman Collection
+You can test the API using the provided Postman collection available [here](https://www.postman.com/sih666-9522/workspace/personal-projects/collection/37258897-6c3eb9fc-1343-4fba-b100-d9b3db85fa7a?action=share&creator=37258897). Import the collection into Postman for easy access to all endpoints.
+
+## License
 This project is licensed under the MIT License.
+
+## Author
+**Chinmay Raut**  
+Nashik, Maharashtra  
+Email: chinmayraut27@gmail.com  
+LinkedIn: [Chinmay Raut](https://www.linkedin.com/in/chinmayraut276)
+
+```
+
+Feel free to customize the text, add more details, or modify the examples as necessary to better reflect your project and personal style!
