@@ -1,6 +1,4 @@
-Here's a more detailed README file formatted for GitHub, complete with sections for installation, usage, and example requests. 
 
-```markdown
 # Expense Management System
 
 ## Overview
