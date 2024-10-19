@@ -128,6 +128,3 @@ Nashik, Maharashtra
 Email: chinmayraut27@gmail.com  
 LinkedIn: [Chinmay Raut](https://www.linkedin.com/in/chinmayraut276)
 
-```
-
-Feel free to customize the text, add more details, or modify the examples as necessary to better reflect your project and personal style!
