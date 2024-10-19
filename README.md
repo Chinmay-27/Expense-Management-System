@@ -119,8 +119,6 @@ To set up the project locally, follow these steps:
 ## Postman Collection
 You can test the API using the provided Postman collection available [here](https://www.postman.com/sih666-9522/workspace/personal-projects/collection/37258897-6c3eb9fc-1343-4fba-b100-d9b3db85fa7a?action=share&creator=37258897). Import the collection into Postman for easy access to all endpoints.
 
-## License
-This project is licensed under the MIT License.
 
 ## Author
 **Chinmay Raut**  
