@@ -15,7 +15,8 @@ app.use(express.json()); // Parse JSON request bodies
 
 // Define a root route to avoid the "Cannot GET /" error
 app.get('/', (req, res) => {
-    res.send('Welcome to the Daily Expenses Sharing Application API!');
+    res.send('This app doesnt have a frontend,Please check the GitHub profile for backend and necessary steps and dependencies   ');
+
 });
 
 // Use user and expense routes
